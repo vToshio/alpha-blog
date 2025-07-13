@@ -1,6 +1,15 @@
 <h1>Create a New Article</h1>
 
-<%= form_with scope: :article, url: articles_path , method: 'POST', local: true  do |form| %>
+<% if @article.errors.any? %>
+    <h2>The following error prevented the article from being saved: </h2>
+    <ul>
+        <% @article.errors.full_messages.each do |message| %>
+            <li style="color: red;"> <%= message %> </li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_with scope: :article, url: articles_path , method: 'POST', local: true do |form| %>
 
     <div>
         <%= form.label :title %>
