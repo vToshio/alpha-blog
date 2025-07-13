@@ -23,20 +23,8 @@
   </head>
 
   <body>
-    <div style="margin: 10px; display: inline-block;">
-      <%= link_to "Home", home_path %>
-      <%= link_to "Articles", articles_path %>
-      <%= link_to "About", about_path %>
-    </div>
-
-    <% if flash.any? %>
-        <% flash.each do |key, msg| %>
-          <p style="color: green;">
-            <%= msg %>
-          </p
-        <% end %>
-    <% end %>
-
+    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/messages' %>
     <%= yield %>
   </body>
 </html>

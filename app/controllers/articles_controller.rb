@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+  # Execute before show, edit, update and destroy actions
+  before_action :set_article, only: [ :show, :edit, :update, :destroy ]
+
   # GET /articles
   def index
     @articles = Article.all.reverse
@@ -6,7 +9,6 @@ class ArticlesController < ApplicationController
 
   # GET /articles/:id
   def show
-    @article = Article.find(params[:id])
   end
 
   # GET /articles/new
@@ -16,12 +18,11 @@ class ArticlesController < ApplicationController
 
   # GET /articles/:id/edit
   def edit
-    @article = Article.find(params[:id])
   end
 
   # POST /articles/
   def create
-    @article = Article.new(params.require(:article).permit(:title, :description))
+    @article = Article.new(article_params)
 
     if @article.save
       flash[:notice] = "Article was created sucessfully."
@@ -33,9 +34,7 @@ class ArticlesController < ApplicationController
 
   # PATCH/PUT /articles/:id
   def update
-    @article = Article.find(params[:id])
-
-    if @article.update(params.require(:article).permit(:title, :description))
+    if @article.update(article_params)
       flash[:notice] = "Article was edited successfully."
       redirect_to @article
     else
@@ -45,9 +44,18 @@ class ArticlesController < ApplicationController
 
   # DELETE /articles/:id
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy()
     flash[:notice] = "Article was deleted successfully."
     redirect_to articles_path
+  end
+
+  private
+
+  def article_params
+    params.require(:article).permit(:title, :description)
+  end
+
+  def set_article
+    @article = Article.find(params[:id])
   end
 end
