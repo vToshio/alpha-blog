@@ -5,6 +5,7 @@
         <th>Id</th>
         <th>Title</th>
         <th>Description</th>
+        <th>Created At</th>
         <th>Actions</th>
     </thead>
     <tbody>
@@ -13,8 +14,9 @@
                 <td> <%= article.id %> </td>
                 <td> <%= article.title %> </td>
                 <td> <%= article.description %> </td>
+                <td> <%= show_article_created_at(article) %> </td>
                 <td>
-                    Placeholder
+                   <button>Placeholder</button>
                 </td>
             </tr>
         <% end %>
