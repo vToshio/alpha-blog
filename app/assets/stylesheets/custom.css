@@ -9,3 +9,11 @@
     letter-spacing: -1px;
     font-weight: bold;
 }
+
+.home-jumbotron {
+    background-image: url('/home.jpg');
+}
+
+footer {
+    background-color: black !important;
+}
